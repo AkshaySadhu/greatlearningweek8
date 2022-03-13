@@ -32,13 +32,13 @@ public class BillingController {
     }
 
     @GetMapping("/get_bill_amount")
-    public Double getBillForUser(User user){
-        Double billAmount = billingService.getTotalBillAmount(user);
+    public Double getBillForUser(User user, String coupon){
+        Double billAmount = billingService.getTotalBillAmount(user, coupon);
         return billAmount;
     }
 
     @GetMapping("/display_bill")
-    public void displayBill(User user){
-        billingService.displayBill(user);
+    public void displayBill(User user, String coupon){
+        billingService.displayBill(user, coupon);
     }
 }

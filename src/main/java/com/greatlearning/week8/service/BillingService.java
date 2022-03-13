@@ -7,9 +7,9 @@ import com.greatlearning.week8.Model.User;
 import java.util.List;
 
 public interface BillingService {
-    Double getTotalBillAmount(User user);
+    Double getTotalBillAmount(User user, String coupon);
 
-    void displayBill(User user);
+    void displayBill(User user, String coupon);
 
     void createCartForUser(List<Items> itemsList, User user);
 

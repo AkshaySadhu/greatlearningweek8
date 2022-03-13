@@ -21,22 +21,27 @@ public class BillingServiceImpl implements BillingService {
     private ItemsRepository itemsRepository;
 
     @Override
-    public Double getTotalBillAmount(User user) {
+    public Double getTotalBillAmount(User user, String coupon) {
         Cart cart1 =  cartRepository.findCartByUser(user);
         Double billAmount = 0.0;
         for(Items items : cart1.getItemsList()){
             billAmount += items.getItemPrice();
         }
-
+        if("festiva".equalsIgnoreCase(coupon)){
+            billAmount = billAmount/2.0;
+        }
         return billAmount;
     }
 
     @Override
-    public void displayBill(User user) {
+    public void displayBill(User user, String coupon) {
         Cart cart = cartRepository.findCartByUser(user);
         cart.getItemsList().forEach(item -> {
             System.out.println(item.getItemName() + "   :    " + item.getItemPrice());
         });
+
+        Double total = getTotalBillAmount(user, coupon);
+        System.out.println("Total  :" + total);
     }
 
     @Override
