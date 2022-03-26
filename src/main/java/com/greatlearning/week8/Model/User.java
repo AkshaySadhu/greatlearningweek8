@@ -20,6 +20,8 @@ public class User {
 
     private String email;
 
+    private String city;
+
     @Transient
     private String passwordConfirm;
 

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -45,5 +46,11 @@ public class UserServiceImpl implements UserService {
         userLocal.setEmail(user.getEmail());
 
         userRepository.save(userLocal);
+    }
+
+    @Override
+    public List<User> getAllUsersByCity(String city) {
+        List<User> userList = userRepository.getAllByCity(city);
+        return userList;
     }
 }
